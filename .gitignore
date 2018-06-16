@@ -1,3 +1,4 @@
 .idea/
 target/
 simple-javaee7-structure.iml
+derby.log

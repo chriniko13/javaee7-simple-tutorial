@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
 @Singleton
 public class PostEngineInitialization {
 
-    @PersistenceContext(unitName = "myPU")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @PostConstruct
