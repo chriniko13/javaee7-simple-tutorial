@@ -7,6 +7,8 @@ import com.chriniko.example.posts.control.PostValidator;
 import com.chriniko.example.posts.entity.Post;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.ShouldMatchDataSet;
+import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -44,10 +46,25 @@ public class PostEngineTest {
     PostEngine postEngine;
 
     @Test
-    public void findAll() {
+    public void findAll_1() {
 
         List<Post> posts = postEngine.findAll();
 
         Assert.assertEquals(0, posts.size());
+    }
+
+    @Test
+    @UsingDataSet("datasets/posts.yml")
+    @ShouldMatchDataSet("datasets/expected-posts.yml")
+    public void findAll_2() {
+
+    }
+
+    @Test
+    public void save_1() {
+
+        postEngine.store("some-title", "some-text");
+
+        Assert.assertEquals(1, postEngine.findAll().size());
     }
 }

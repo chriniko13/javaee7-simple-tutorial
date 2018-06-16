@@ -3,6 +3,7 @@ package com.chriniko.example.configurator.boundary;
 
 import com.chriniko.example.configurator.entity.Config;
 
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -31,5 +32,9 @@ public class ConfigurationEngine {
         } catch (NoResultException error) {
             return "undefined";
         }
+    }
+
+    public void release(@Disposes @Threshold String threshold) {
+        System.out.println("### disposing threshold configuration");
     }
 }

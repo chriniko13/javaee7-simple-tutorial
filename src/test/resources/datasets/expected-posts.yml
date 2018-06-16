@@ -1,0 +1,7 @@
+post:
+  - id: 1
+    title: some-title1
+    text: some-text1
+  - id: 2
+    title: some-title2
+    text: some-text2

@@ -2,6 +2,7 @@ package com.chriniko.example.tracker.boundary;
 
 import com.chriniko.example.logging.boundary.InfoLevel;
 import com.chriniko.example.tracker.control.TriggeredMethod;
+import lombok.Getter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -18,6 +19,7 @@ import java.util.function.Consumer;
 @ApplicationScoped
 public class TrackerEngine {
 
+    @Getter
     private List<TriggeredMethod> events;
 
     @Inject
