@@ -46,18 +46,47 @@
             <version>6.2</version>
         </dependency>
 
-        <!-- Porcupine -->
+        <!-- Porcupine (https://github.com/AdamBien/porcupine) -->
         <dependency>
             <groupId>com.airhacks</groupId>
             <artifactId>porcupine-spy</artifactId>
             <version>0.0.4</version>
         </dependency>
 
-        <!-- Perceptor TODO -->
+        <!-- Perceptor (https://github.com/AdamBien/perceptor) -->
+        <dependency>
+            <groupId>com.airhacks</groupId>
+            <artifactId>perceptor-spy</artifactId>
+            <version>0.0.1</version>
+        </dependency>
 
-        <!-- Breakr TODO -->
+        <!-- Breakr (https://github.com/AdamBien/breakr) -->
+        <dependency>
+            <groupId>com.airhacks</groupId>
+            <artifactId>breakr</artifactId>
+            <version>0.0.3</version>
+        </dependency>
 
         <!-- Arquillian TODO -->
+        <dependency>
+            <groupId>org.jboss.arquillian</groupId>
+            <artifactId>arquillian-bom</artifactId>
+            <version>1.1.13.Final</version>
+            <scope>import</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>4.1.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Jacoco with Arquillian TODO -->
 

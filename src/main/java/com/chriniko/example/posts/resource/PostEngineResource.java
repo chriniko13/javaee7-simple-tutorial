@@ -1,5 +1,6 @@
 package com.chriniko.example.posts.resource;
 
+import com.airhacks.interceptor.monitoring.boundary.PerformanceSensor;
 import com.airhacks.porcupine.execution.boundary.Dedicated;
 import com.chriniko.example.posts.boundary.PostEngine;
 import com.chriniko.example.posts.entity.Post;
@@ -7,6 +8,7 @@ import com.chriniko.example.posts.entity.Post;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -24,6 +26,9 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Path("posts")
+
+@Interceptors(PerformanceSensor.class)
+
 public class PostEngineResource {
 
     @Inject
