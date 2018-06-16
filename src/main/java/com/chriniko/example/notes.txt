@@ -1,0 +1,5 @@
+-----------------------
+        NOTES
+-----------------------
+
+1) In order to access the old-school monitoring of payara: http://localhost:4848/monitoring/domain/server/applications

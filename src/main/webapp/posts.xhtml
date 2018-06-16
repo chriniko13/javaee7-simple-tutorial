@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Posts Engine Application</title>
+    </h:head>
+
+    <h:body>
+
+        <p:layout>
+
+            <p:layoutUnit position="center">
+
+                <h:form id="form">
+
+                    <p:panel id="postsDetail">
+                        <p:dataTable
+                                id="postsDt"
+                                var="post" value="#{postsViewBean.posts}"
+                                rows="10"
+                                paginator="true"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="5,10,15"
+                                reflow="true"
+                                selection="#{postsViewBean.selectedPost}" rowKey="#{post.id}">
+
+                            <f:facet name="header">
+                                List of Posts
+                            </f:facet>
+
+                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                            <p:column headerText="Id">
+                                <h:outputText value="#{post.id}"/>
+                            </p:column>
+
+                            <p:column headerText="Title">
+                                <h:outputText value="#{post.title}"/>
+                            </p:column>
+
+                            <p:column headerText="Text">
+                                <h:outputText value="#{post.text}"/>
+                            </p:column>
+
+                            <p:column headerText="Created">
+                                <h:outputText value="#{post.created.toString()}"/>
+                            </p:column>
+
+                            <f:facet name="footer">
+                                <p:commandButton process="postsDt" update="@form" icon="ui-icon-search"
+                                                 value="View" oncomplete="PF('postDialog').show()"/>
+                                In total there are ${postsViewBean.posts.size()} posts.
+                            </f:facet>
+
+                        </p:dataTable>
+                    </p:panel>
+
+
+                    <p:dialog header="Post Info" widgetVar="postDialog" modal="false" showEffect="fade" hideEffect="fade" id="postInfoDialog"
+                              resizable="false">
+                        <p:outputPanel id="postDetail" style="text-align:center;">
+                            <p:panelGrid columns="2" rendered="#{not empty postsViewBean.selectedPost}"
+                                         columnClasses="label,value">
+
+                                <h:outputText value="Id:"/>
+                                <h:outputText value="#{postsViewBean.selectedPost.id}"/>
+
+                                <h:outputText value="Title:"/>
+                                <h:outputText value="#{postsViewBean.selectedPost.title}"/>
+
+                                <h:outputText value="Text:"/>
+                                <h:outputText value="#{postsViewBean.selectedPost.text}"/>
+
+                                <h:outputText value="Created"/>
+                                <h:outputText value="#{postsViewBean.selectedPost.created.toString()}"/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                </h:form>
+
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+
+</f:view>
+</html>
