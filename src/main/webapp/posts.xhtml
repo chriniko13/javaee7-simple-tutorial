@@ -17,51 +17,83 @@
             <p:layoutUnit position="center">
 
                 <h:form id="form">
+                    <p:growl autoUpdate="true"/>
 
-                    <p:panel id="postsDetail">
-                        <p:dataTable
-                                id="postsDt"
-                                var="post" value="#{postsViewBean.posts}"
-                                rows="10"
-                                paginator="true"
-                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                rowsPerPageTemplate="5,10,15"
-                                reflow="true"
-                                selection="#{postsViewBean.selectedPost}" rowKey="#{post.id}">
+                    <p:panelGrid columns="1">
 
-                            <f:facet name="header">
-                                List of Posts
-                            </f:facet>
+                        <p:panel id="postsDetail" header="All Posts" toggleable="true" collapsed="false">
+                            <p:dataTable
+                                    id="postsDt"
+                                    var="post" value="#{postsViewBean.posts}"
+                                    rows="10"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="5,10,15"
+                                    reflow="true"
+                                    selection="#{postsViewBean.selectedPost}" rowKey="#{post.id}">
 
-                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                                <f:facet name="header">
+                                    List of Posts
+                                </f:facet>
 
-                            <p:column headerText="Id">
-                                <h:outputText value="#{post.id}"/>
-                            </p:column>
+                                <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
-                            <p:column headerText="Title">
-                                <h:outputText value="#{post.title}"/>
-                            </p:column>
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{post.id}"/>
+                                </p:column>
 
-                            <p:column headerText="Text">
-                                <h:outputText value="#{post.text}"/>
-                            </p:column>
+                                <p:column headerText="Title">
+                                    <h:outputText value="#{post.title}"/>
+                                </p:column>
 
-                            <p:column headerText="Created">
-                                <h:outputText value="#{post.created.toString()}"/>
-                            </p:column>
+                                <p:column headerText="Text">
+                                    <h:outputText value="#{post.text}"/>
+                                </p:column>
 
-                            <f:facet name="footer">
-                                <p:commandButton process="postsDt" update="@form" icon="ui-icon-search"
-                                                 value="View" oncomplete="PF('postDialog').show()"/>
-                                In total there are ${postsViewBean.posts.size()} posts.
-                            </f:facet>
+                                <p:column headerText="Created">
+                                    <h:outputText value="#{post.created.toString()}"/>
+                                </p:column>
 
-                        </p:dataTable>
-                    </p:panel>
+                                <f:facet name="footer">
+                                    <p:commandButton process="postsDt" update="@form" icon="ui-icon-search"
+                                                     value="View" oncomplete="PF('postDialog').show()"/>
+                                    <p:spacer width="5"/>
+                                    In total there are ${postsViewBean.posts.size()} posts.
+                                    <p:spacer width="5"/>
+                                    <p:commandButton process=":form:postsDt"
+                                                     update=":form:postsDt"
+                                                     value="Refresh"
+                                                     actionListener="#{postsViewBean.refresh()}"/>
+                                </f:facet>
+
+                            </p:dataTable>
+                        </p:panel>
+
+                        <p:panel header="Add Post" toggleable="true" collapsed="false">
+
+                            <p:panelGrid columns="2" columnClasses="label,value">
+
+                                <h:outputText value="Title:"/>
+                                <p:inputText value="#{postsViewBean.title}"/>
+
+                                <h:outputText value="Text:"/>
+                                <p:inputTextarea rows="5" cols="30"
+                                                 autoResize="false" value="#{postsViewBean.text}"/>
+
+                                <h:outputText value="Actions:"/>
+                                <p:commandButton value="Save"
+                                                 actionListener="#{postsViewBean.save()}"
+                                                 process=":form"
+                                                 update=":form"/>
+                            </p:panelGrid>
+
+                        </p:panel>
+
+                    </p:panelGrid>
 
 
-                    <p:dialog header="Post Info" widgetVar="postDialog" modal="false" showEffect="fade" hideEffect="fade" id="postInfoDialog"
+                    <p:dialog header="Post Info" widgetVar="postDialog" modal="false" showEffect="fade"
+                              hideEffect="fade" id="postInfoDialog"
                               resizable="false">
                         <p:outputPanel id="postDetail" style="text-align:center;">
                             <p:panelGrid columns="2" rendered="#{not empty postsViewBean.selectedPost}"
@@ -74,10 +106,12 @@
                                 <h:outputText value="#{postsViewBean.selectedPost.title}"/>
 
                                 <h:outputText value="Text:"/>
-                                <h:outputText value="#{postsViewBean.selectedPost.text}"/>
+                                <p:inputTextarea rows="5" cols="30" autoResize="false"
+                                                 value="#{postsViewBean.selectedPost.text}" disabled="true"/>
 
                                 <h:outputText value="Created"/>
                                 <h:outputText value="#{postsViewBean.selectedPost.created.toString()}"/>
+
                             </p:panelGrid>
                         </p:outputPanel>
                     </p:dialog>

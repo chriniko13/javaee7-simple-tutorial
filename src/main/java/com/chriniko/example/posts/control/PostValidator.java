@@ -3,7 +3,6 @@ package com.chriniko.example.posts.control;
 import com.chriniko.example.posts.entity.Post;
 
 import javax.annotation.PostConstruct;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 public class PostValidator {
@@ -15,11 +14,11 @@ public class PostValidator {
 
     public void validate(Post post) {
 
-        boolean missingRequiredField = Stream.of(post.getId(), post.getTitle(), post.getText())
-                .anyMatch(Objects::isNull);
+        boolean missingRequiredField = Stream.of(post.getTitle(), post.getText())
+                .anyMatch(info -> info == null || info.isEmpty());
 
         if (missingRequiredField) {
-            throw new PostValidationException("id, title and text are required fields for post!");
+            throw new PostValidationException("title and text are required fields for the post!");
         }
 
     }
