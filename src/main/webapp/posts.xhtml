@@ -98,6 +98,26 @@
 
                         </p:panel>
 
+                        <p:spacer height="5"/>
+
+                        <p:panel header="Application Inspector" toggleable="true" collapsed="false">
+
+                            <p:dataList value="#{beansSearcher.beans()}"
+                                        var="bean" type="unordered"
+                                        itemType="none" paginator="true" rows="10" styleClass="paginated">
+                                <f:facet name="header">
+                                    Loaded CDI Beans
+                                </f:facet>
+
+                                <h:outputText value="#{bean}" style="display:inline-block"/>
+                            </p:dataList>
+
+                            <f:facet name="footer">
+                                Total Beans: ${beansSearcher.beans().size()}
+                            </f:facet>
+
+                        </p:panel>
+
                     </p:panelGrid>
 
 

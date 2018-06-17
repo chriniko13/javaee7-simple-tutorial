@@ -3,6 +3,7 @@ package com.chriniko.example.posts.boundary;
 
 import com.chriniko.example.configurator.boundary.Threshold;
 import com.chriniko.example.logging.boundary.InfoLevel;
+import com.chriniko.example.posts.control.PostCreationTime;
 import com.chriniko.example.posts.control.PostValidator;
 import com.chriniko.example.posts.crosscut.Logged;
 import com.chriniko.example.posts.entity.Post;
@@ -13,7 +14,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -37,13 +37,16 @@ public class PostEngine {
     @Threshold
     String threshold;
 
+    @Inject
+    PostCreationTime postCreationTime;
+
     @PostConstruct
     void onCreation() {
         LOG.accept("----Boundary, clazz: " + this.getClass().getSimpleName() + ", thread: " + Thread.currentThread().getName());
     }
 
     public void store(String title, String text) {
-        Post newPost = new Post(UUID.randomUUID().toString(), title, text, Instant.now());
+        Post newPost = new Post(UUID.randomUUID().toString(), title, text, postCreationTime.getCreated());
         postValidator.validate(newPost);
         entityManager.persist(newPost);
     }

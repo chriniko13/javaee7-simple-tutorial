@@ -3,6 +3,7 @@ package com.chriniko.example.posts.boundary;
 import com.chriniko.example.configurator.boundary.ConfigurationEngine;
 import com.chriniko.example.configurator.entity.Config;
 import com.chriniko.example.logging.boundary.LoggerProducer;
+import com.chriniko.example.posts.control.PostCreationTime;
 import com.chriniko.example.posts.control.PostValidator;
 import com.chriniko.example.posts.entity.Post;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -31,7 +32,8 @@ public class PostEngineTest {
                         LoggerProducer.class,
                         //PostEngineInitialization.class, //Note: if you uncomment this, you will have 10 posts.
                         Post.class,
-                        Config.class)
+                        Config.class,
+                        PostCreationTime.class)
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource("arquillian.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
