@@ -115,13 +115,16 @@
 
         <!-- Jacoco with Arquillian TODO -->
 
+        <!-- Mockito TODO -->
 
+        <!-- Hamcrest TODO -->
 
     </dependencies>
 
 
     <dependencyManagement>
         <dependencies>
+            <!-- Arquillian Bom -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>

@@ -7,8 +7,6 @@
 
 
 TODO
-1) finish playing with arquillian and make sure maven automation is ok
-
 2) do basic unit testing (junit + mockito + hamcrest)
 
 3) add selenium for primefaces (integration tests)

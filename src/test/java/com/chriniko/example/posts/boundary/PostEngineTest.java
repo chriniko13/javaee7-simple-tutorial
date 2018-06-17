@@ -29,7 +29,7 @@ public class PostEngineTest {
                         PostValidator.class,
                         ConfigurationEngine.class,
                         LoggerProducer.class,
-                        //PostEngineInitialization.class, //Note: if you uncomment this, you will have 100 posts.
+                        //PostEngineInitialization.class, //Note: if you uncomment this, you will have 10 posts.
                         Post.class,
                         Config.class)
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")

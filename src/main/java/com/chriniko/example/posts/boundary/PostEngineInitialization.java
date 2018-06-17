@@ -26,7 +26,7 @@ public class PostEngineInitialization {
     @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
     void init() {
 
-        List<Post> qaPosts = IntStream.rangeClosed(1, 100)
+        List<Post> qaPosts = IntStream.rangeClosed(1, 10)
                 .boxed()
                 .map(idx -> new Post(UUID.randomUUID().toString(), "title_" + idx, "description_" + idx, Instant.now()))
                 .collect(Collectors.toList());

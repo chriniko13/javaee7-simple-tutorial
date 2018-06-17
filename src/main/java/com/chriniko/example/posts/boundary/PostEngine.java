@@ -57,4 +57,8 @@ public class PostEngine {
         return q.getResultList();
     }
 
+    public void delete(String id) {
+        Post toDelete = entityManager.find(Post.class, id);
+        entityManager.remove(toDelete);
+    }
 }
