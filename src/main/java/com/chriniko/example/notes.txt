@@ -4,6 +4,8 @@
 
 1) In order to access the old-school monitoring of payara: http://localhost:4848/monitoring/domain/server/applications
 
+2) Run integration tests (ConfigTestIT.java) which do not use container (as Arquillian does)
+   command: mvn failsafe:integration-test
 
 TODO
 3) add selenium for primefaces (integration tests)
