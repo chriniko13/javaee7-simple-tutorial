@@ -5,8 +5,6 @@
 1) In order to access the old-school monitoring of payara: http://localhost:4848/monitoring/domain/server/applications
 
 
-
 TODO
-2) do basic unit testing (junit + mockito + hamcrest)
-
 3) add selenium for primefaces (integration tests)
+   https://www.codenotfound.com/jsf-primefaces-automated-unit-testing-selenium.html
