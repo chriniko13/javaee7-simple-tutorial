@@ -1,7 +1,7 @@
 # javaee7-simple-tutorial
 
 A simple java ee 7 tutorial.
-Structured on BCE(Boundary Control Entity), Adam Bien: https://github.com/AdamBien/javaee-bce-pom
+Structured on BCE(Boundary Control Entity), based on Adam Bien: https://github.com/AdamBien/javaee-bce-pom
 
 Technologies used:
 1) JavaEE8
