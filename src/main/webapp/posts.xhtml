@@ -118,6 +118,47 @@
 
                         </p:panel>
 
+                        <p:spacer height="5"/>
+
+                        <p:panel id="sessionNotes" header="Session Notes" toggleable="true" collapsed="false">
+
+                            <p:panelGrid columns="1">
+
+                                <p:panel header="Your Notes">
+                                    <p:dataTable var="note" value="#{notesKeeper.notes}"
+                                                 rows="10"
+                                                 paginator="true"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10,15">
+                                        <p:column headerText="Note">
+                                            <h:outputText value="#{note}"/>
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            In total there are ${notesKeeper.notes.size()} notes.
+                                            <p:spacer width="5"/>
+                                            <p:commandButton process=":form:sessionNotes"
+                                                             update=":form:sessionNotes"
+                                                             value="Delete"
+                                                             actionListener="#{notesKeeper.destroy()}"/>
+                                        </f:facet>
+
+                                    </p:dataTable>
+                                </p:panel>
+
+                                <p:panel>
+                                    <p:outputLabel value="New Note: "/>
+                                    <p:inputText value="#{notesKeeper.newNote}"/>
+                                    <p:spacer width="5"/>
+                                    <p:commandButton process=":form:sessionNotes"
+                                                     update=":form:sessionNotes"
+                                                     value="Save"
+                                                     actionListener="#{notesKeeper.save()}"/>
+                                </p:panel>
+                            </p:panelGrid>
+
+                        </p:panel>
+
                     </p:panelGrid>
 
 

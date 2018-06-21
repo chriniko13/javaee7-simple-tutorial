@@ -7,6 +7,9 @@
 2) Run integration tests (ConfigTestIT.java) which do not use container (as Arquillian does)
    command: mvn failsafe:integration-test
 
+3) In order to run unit tests and  Arquillian container tests ( = integration test)
+   command: mvn test
+
 TODO
 3) add selenium for primefaces (integration tests)
    https://www.codenotfound.com/jsf-primefaces-automated-unit-testing-selenium.html
