@@ -10,6 +10,27 @@
 3) In order to run unit tests and  Arquillian container tests ( = integration test)
    command: mvn test
 
+
+------------------------
+     EDUCATIONAL
+------------------------
+
+1) JavaEE = POJOs + Dependency Injection + Aspects + Convention Over Configuration
+
+2) CDI = Inject + Aspects
+
+3) EJB = POJOs + Aspects
+
+4) Levels of Testing
+   - Unit Testing
+   - Integration Testing (Functional Testing)
+   - System Testing (End to End Testing)
+   - Torture Testing (Performance Testing)
+
+------------------------------------------------------------------------------------------------------------------------
+
 TODO
-3) add selenium for primefaces (integration tests)
+1) Add selenium for primefaces (integration tests)
    https://www.codenotfound.com/jsf-primefaces-automated-unit-testing-selenium.html
+
+2) Add JSFUnit (http://jsfunit.jboss.org/gettingstarted_version_2-0-0)

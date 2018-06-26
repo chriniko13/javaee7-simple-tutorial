@@ -11,10 +11,20 @@ public class LoggerProducer {
     @Produces
     @InfoLevel
     @Dependent
-    public Consumer<String> expose(InjectionPoint ip) {
-        String clazzName = ip.getMember().getDeclaringClass().getName();
+    public Consumer<String> exposeInfoLogger(InjectionPoint ip) {
+        String clazzName = getClassName(ip);
         return message -> Logger.getLogger(clazzName).info(message);
     }
 
+    @Produces
+    @WarnLevel
+    public Consumer<String> exposeWarnLogger(InjectionPoint ip) {
+        String clazzName = getClassName(ip);
+        return message -> Logger.getLogger(clazzName).warning(message);
+    }
+
+    private String getClassName(InjectionPoint ip) {
+        return ip.getMember().getDeclaringClass().getName();
+    }
 
 }

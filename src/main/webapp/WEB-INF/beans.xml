@@ -10,4 +10,8 @@
         <class>com.chriniko.example.posts.crosscut.LoggedInterceptor</class>
     </interceptors>
 
+    <alternatives>
+        <!-- Note: comment/uncomment to see how the alternatives work -->
+        <class>com.chriniko.example.notes.control.UppercaseNoteTracker</class>
+    </alternatives>
 </beans>

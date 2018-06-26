@@ -1,5 +1,6 @@
 package com.chriniko.example.posts.boundary;
 
+import com.chriniko.example.posts.control.PostCreationTime;
 import com.chriniko.example.posts.control.PostValidator;
 import com.chriniko.example.posts.entity.Post;
 import org.hamcrest.core.Is;
@@ -32,6 +33,9 @@ public class PostEngineTest_WithMocking {
     private PostValidator mockedPostValidator;
 
     @Mock
+    private PostCreationTime mockedPostCreationTime;
+
+    @Mock
     private TypedQuery<Object> mockedTypedQuery;
 
     private Consumer<String> log = s -> {
@@ -40,18 +44,22 @@ public class PostEngineTest_WithMocking {
     private String threshold = "0.99";
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         MockitoAnnotations.initMocks(this);
         postEngine = new PostEngine();
         postEngine.entityManager = mockedEntityManager;
         postEngine.postValidator = mockedPostValidator;
+        postEngine.postCreationTime = mockedPostCreationTime;
         postEngine.LOG = log;
         postEngine.threshold = threshold;
     }
 
     @Test
     public void store() {
+
+        //given
+        Mockito.when(mockedPostCreationTime.getCreated()).then(invocation -> Instant.now());
 
         //when
         postEngine.store("title", "text");

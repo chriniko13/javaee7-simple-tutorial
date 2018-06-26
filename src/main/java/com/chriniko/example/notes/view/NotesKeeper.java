@@ -1,20 +1,20 @@
 package com.chriniko.example.notes.view;
 
 import com.chriniko.example.jsf.boundary.JsfEngine;
+import com.chriniko.example.notes.control.StateKeeper;
+import com.chriniko.example.notes.control.NoteTracker;
+import com.chriniko.example.posts.entity.Post;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
-@SessionScoped
+@StateKeeper
 public class NotesKeeper implements Serializable {
 
     @Getter
@@ -30,6 +30,13 @@ public class NotesKeeper implements Serializable {
     @Getter
     @Setter
     private String newNote;
+
+    @Inject
+    NoteTracker noteTracker;
+
+    // Note: comment/uncomment to see what happens and then see VetoEntity.java.
+//    @Inject
+//    Post post;
 
     @PostConstruct
     void init() {
@@ -48,6 +55,9 @@ public class NotesKeeper implements Serializable {
         }
 
         notes.add(newNote);
+
+        noteTracker.track(newNote);
+
         newNote = "";
         jsfEngine.displayMessage("Your note has been saved successfully!");
     }
