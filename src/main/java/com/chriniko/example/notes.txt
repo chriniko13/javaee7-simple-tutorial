@@ -28,9 +28,3 @@
    - Torture Testing (Performance Testing)
 
 ------------------------------------------------------------------------------------------------------------------------
-
-TODO
-1) Add selenium for primefaces (integration tests)
-   https://www.codenotfound.com/jsf-primefaces-automated-unit-testing-selenium.html
-
-2) Add JSFUnit (http://jsfunit.jboss.org/gettingstarted_version_2-0-0)
